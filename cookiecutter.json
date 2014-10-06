@@ -1,0 +1,15 @@
+{
+    "analysis_name":"test",
+    "allocation_name":"hpc_test02",
+    "working_directory":"/path/to/test",
+    "best_trees_directory":"best",
+    "best_trees_parsimony_directory":"parsimony",
+    "bootrep_trees_directory":"bootreps",
+    "bootrep_trees_reps_directory":"reps",
+    "bootrep_trees_parsimony_directory":"parsimony",
+    "phylip_path":"alignment.aln",
+    "number_of_trees":"20",
+    "analysis_nodes":"4",
+    "analysis_ppn":"16"
+    "number_of_bootreps":"100",
+}
