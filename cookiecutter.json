@@ -10,6 +10,6 @@
     "phylip_path":"alignment.aln",
     "number_of_trees":"20",
     "analysis_nodes":"4",
-    "analysis_ppn":"16"
-    "number_of_bootreps":"100",
+    "analysis_ppn":"16",
+    "number_of_bootreps":"100"
 }
