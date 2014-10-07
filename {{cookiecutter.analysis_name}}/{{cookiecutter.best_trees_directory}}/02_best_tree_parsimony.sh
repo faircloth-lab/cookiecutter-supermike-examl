@@ -9,7 +9,7 @@
 
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
 export best=$workdir/{{cookiecutter.best_trees_directory}}
-export phylip=$workdir/{{cookiecutter.phylip_path}}
+export phylip=$workdir/{{cookiecutter.phylip_file}}
 export parsimony=$best/{{cookiecutter.best_trees_parsimony_directory}}
 export num_trees={{cookiecutter.number_of_trees}}
 

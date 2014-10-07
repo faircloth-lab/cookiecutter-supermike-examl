@@ -10,7 +10,7 @@
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
 export best=$workdir/{{cookiecutter.best_trees_directory}}
 export parsimony=$best/{{cookiecutter.best_trees_parsimony_directory}}
-export binary_phylip={{cookiecutter.tld}}/{{cookiecutter.analysis_name}}/{{cookiecutter.phylip_path}}.binary
+export binary_phylip={{cookiecutter.tld}}/{{cookiecutter.analysis_name}}/{{cookiecutter.phylip_file}}.binary
 export num_trees=20
 procs=$(({{cookiecutter.analysis_nodes}}*{{cookiecutter.analysis_ppn}}))
 
