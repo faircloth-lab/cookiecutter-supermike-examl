@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q single
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=10:00:00
+#PBS -l walltime=4:00:00
 #PBS -o 02_best_parsimomy.stdout
 #PBS -e 02_best_parsimony.stderr
 #PBS -N 02_best_parsimony
