@@ -2,9 +2,9 @@
 #PBS -q single
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=2:00:00
-#PBS -o best_binary_stdout
-#PBS -e best_binary_stderr
-#PBS -N best_binary
+#PBS -o 01_best_tree_binary.stdout
+#PBS -e 01_best_tree_binary.stderr
+#PBS -N 01_best_tree_binary
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}

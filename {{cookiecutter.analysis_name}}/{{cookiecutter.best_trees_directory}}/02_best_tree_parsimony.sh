@@ -2,9 +2,9 @@
 #PBS -q single
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=10:00:00
-#PBS -o best_parsimomy_stdout
-#PBS -e best_parsimony_stderr
-#PBS -N best_parsimony
+#PBS -o 02_best_parsimomy.stdout
+#PBS -e 02_best_parsimony.stderr
+#PBS -N 02_best_parsimony
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
