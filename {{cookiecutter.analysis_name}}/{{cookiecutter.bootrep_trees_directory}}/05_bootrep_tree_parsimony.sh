@@ -7,15 +7,15 @@
 #PBS -N bootrep_parsimonator
 #PBS -A {{cookiecutter.allocation_name}}
 
-export BOOTREP_REPS={{cookiecutter.working_directory}}/{{cookiecutter.bootrep_trees_directory}}/{{cookiecutter.bootrep_trees_reps_directory}}
-export BOOTREP_PARSIMONY={{cookiecutter.working_directory}}/{{cookiecutter.bootrep_trees_directory}}/{{cookiecutter.bootrep_trees_parsimony_directory}}
-export REPS={{cookiecutter.number_of_bootreps}}
-export PHYLIP={{cookiecutter.phylip_path}}
+export bootrep_reps={{cookiecutter.working_directory}}/{{cookiecutter.bootrep_trees_directory}}/{{cookiecutter.bootrep_trees_reps_directory}}
+export bootrep_parsimony={{cookiecutter.working_directory}}/{{cookiecutter.bootrep_trees_directory}}/{{cookiecutter.bootrep_trees_parsimony_directory}}
+export reps={{cookiecutter.number_of_bootreps}}
+export phylip={{cookiecutter.phylip_path}}
 
-mkdir -p $BOOTREP_PARSIMONY
-cd $BOOTREP_PARSIMONY
-for i in {1..$REPS};
+mkdir -p $bootrep_parsimony
+cd $bootrep_parsimony
+for i in {1..$reps};
 do
-    time parsimonator-AVX -s $BOOTREP_REPS/$PHYLIP.BS$i -p $RANDOM -n BS$i -N 1;
+    time parsimonator-AVX -s $bootrep_reps/$phylip.BS$i -p $RANDOM -n BS$i -N 1;
     mv RAxML_parsimonyTree.BS$i.0 RAxML_parsimonyTree.BS$i
 done

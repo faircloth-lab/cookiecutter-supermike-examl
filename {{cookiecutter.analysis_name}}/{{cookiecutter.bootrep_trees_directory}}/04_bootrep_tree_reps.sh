@@ -7,17 +7,17 @@
 #PBS -N bootrep_bstrap
 #PBS -A {{cookiecutter.allocation_name}}
 
-export WORKDIR={{cookiecutter.working_directory}}
-export BOOTREP_REPS={{cookiecutter.working_directory}}/{{cookiecutter.bootrep_trees_directory}}/{{cookiecutter.bootrep_trees_reps_directory}}
-export PHYLIP={{cookiecutter.phylip_path}}
-export REPS={{cookiecutter.number_of_bootreps}}
+export workdir=$PWD/{{cookiecutter.analysis_name}}
+export bootrep_reps=$workdir/{{cookiecutter.bootrep_trees_directory}}/{{cookiecutter.bootrep_trees_reps_directory}}
+export phylip={{cookiecutter.phylip_path}}
+export reps={{cookiecutter.number_of_bootreps}}
 
-mkdir -p $BOOTREP_REPS
-cd $BOOTREP_REPS
-raxmlHPC-AVX -N $REPS -b $RANDOM -f j -m GTRGAMMA -s $WORKDIR/$PHYLIP -n REPS
+mkdir -p $bootrep_reps
+cd $bootrep_reps
+raxmlHPC-AVX -N $reps -b $RANDOM -f j -m GTRGAMMA -s $workdir/$phylip -n REPS
 # convert those bootreps to binary format
-for i in {1..$REPS};
+for i in {1..$reps};
 do
-time parse-examl -m DNA -s $BOOTREP_REPS/$PHYLIP.BS$i -n $PHYLIP.BS$i;
+time parse-examl -m DNA -s $bootrep_reps/$phylip.BS$i -n $phylip.BS$i;
 done
 

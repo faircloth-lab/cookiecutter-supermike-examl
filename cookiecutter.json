@@ -1,7 +1,6 @@
 {
     "analysis_name":"test",
     "allocation_name":"hpc_test02",
-    "working_directory":"/path/to/test",
     "best_trees_directory":"best",
     "best_trees_parsimony_directory":"parsimony",
     "bootrep_trees_directory":"bootreps",

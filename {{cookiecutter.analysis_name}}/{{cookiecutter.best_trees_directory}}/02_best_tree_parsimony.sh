@@ -7,11 +7,11 @@
 #PBS -N best_parsimony
 #PBS -A {{cookiecutter.allocation_name}}
 
-export WORKDIR={{cookiecutter.working_directory}}
-export PARSIMONY={{cookiecutter.working_directory}}/{{cookiecutter.best_trees_directory}}/{{cookiecutter.best_trees_parsimony_directory}}
-export PHYLIP={{cookiecutter.phylip_path}}
-export NUM_TREES={{cookiecutter.number_of_trees}}
+export workdir=$PWD/{{cookiecutter.analysis_name}}
+export parsimony=$workdir/{{cookiecutter.best_trees_directory}}/{{cookiecutter.best_trees_parsimony_directory}}
+export phylip={{cookiecutter.phylip_path}}
+export num_trees={{cookiecutter.number_of_trees}}
 
-mkdir -p $PARSIMONY
-cd $PARSIMONY
-time parsimonator-AVX -s $WORKDIR/$PHYLIP -p $RANDOM -n best.RUN -N $NUM_TREES
+mkdir -p $parsimony
+cd $parsimony
+time parsimonator-AVX -s $workdir/$phylip -p $RANDOM -n best.RUN -N $num_trees
