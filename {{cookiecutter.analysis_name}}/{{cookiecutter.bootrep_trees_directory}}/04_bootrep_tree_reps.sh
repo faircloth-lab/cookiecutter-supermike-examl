@@ -2,22 +2,34 @@
 #PBS -q single
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=5:00:00
-#PBS -o bootrep_bstrap_stdout
-#PBS -e bootrep_bstrap_stderr
-#PBS -N bootrep_bstrap
+#PBS -o 04_bootrep_bstrap.stdout
+#PBS -e 04_bootrep_bstrap.stderr
+#PBS -N 04_bootrep_bstrap
 #PBS -A {{cookiecutter.allocation_name}}
 
-export workdir=$PWD/{{cookiecutter.analysis_name}}
-export bootrep_reps=$workdir/{{cookiecutter.bootrep_trees_directory}}/{{cookiecutter.bootrep_trees_reps_directory}}
-export phylip={{cookiecutter.phylip_path}}
-export reps={{cookiecutter.number_of_bootreps}}
+export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
+export bootrep=$workdir/{{cookiecutter.bootrep_trees_directory}}
+export bootrep_reps=$bootrep/{{cookiecutter.bootrep_trees_reps_directory}}
+export phylip=$workdir/{{cookiecutter.phylip_file}}
+
+# compute some values on the fly
+reps=$(({{cookiecutter.number_of_bootreps}} - 1))
 
 mkdir -p $bootrep_reps
 cd $bootrep_reps
-raxmlHPC-AVX -N $reps -b $RANDOM -f j -m GTRGAMMA -s $workdir/$phylip -n REPS
+# processing starts
+date
+# generate $reps bootreps from phylip file
+raxmlHPC-AVX -N $reps -b $RANDOM -f j -m GTRGAMMA -s $phylip -n REPS
 # convert those bootreps to binary format
-for i in {1..$reps};
+for i in {0..$reps};
 do
-time parse-examl -m DNA -s $bootrep_reps/$phylip.BS$i -n $phylip.BS$i;
+    parse-examl -m DNA -s {{cookiecutter.phylip_file}}.BS$i -n BS$i;
 done
+# remove non-binary bootstrap replicates
+#rm {{cookiecutter.phylip_file}}.BS*
+# processing ends
+date
+# done
+exit 0
 
