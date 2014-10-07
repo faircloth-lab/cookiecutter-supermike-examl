@@ -1,16 +1,16 @@
 #!/bin/bash
-#PBS -q checkpt
+#PBS -q workq
 #PBS -l nodes={{cookiecutter.analysis_nodes}}:ppn={{cookiecutter.analysis_ppn}}
 #PBS -l walltime=72:00:00
-#PBS -o best_examl_stdout
-#PBS -e best_examl_stderr
-#PBS -N best_examl
+#PBS -o 03_best_examl.stdout
+#PBS -e 03_best_examl.stderr
+#PBS -N 03_best_examl
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
 export best=$workdir/{{cookiecutter.best_trees_directory}}
 export parsimony=$best/{{cookiecutter.best_trees_parsimony_directory}}
-export binary_phylip=$workdir/{{cookiecutter.phylip_file}}.binary
+export binary_phylip=$best/{{cookiecutter.phylip_file}}.binary
 
 # compute some values on the fly
 num_trees=$(({{cookiecutter.number_of_trees}} - 1))
