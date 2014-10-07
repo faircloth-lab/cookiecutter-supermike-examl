@@ -8,10 +8,11 @@
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir=$PWD/{{cookiecutter.analysis_name}}
-export parsimony=$workdir/{{cookiecutter.best_trees_directory}}/{{cookiecutter.best_trees_parsimony_directory}}
+export best=$workdir/{{cookiecutter.best_trees_directory}}
+export parsimony=$best/{{cookiecutter.best_trees_parsimony_directory}}
 export phylip={{cookiecutter.phylip_path}}
 export num_trees={{cookiecutter.number_of_trees}}
 
 mkdir -p $parsimony
 cd $parsimony
-time parsimonator-AVX -s $workdir/$phylip -p $RANDOM -n best.RUN -N $num_trees
+time parsimonator-AVX -s $best/$phylip -p $RANDOM -n best.RUN -N $num_trees

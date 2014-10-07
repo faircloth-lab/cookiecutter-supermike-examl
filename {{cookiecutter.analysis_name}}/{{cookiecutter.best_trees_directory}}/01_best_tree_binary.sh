@@ -8,7 +8,9 @@
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir=$PWD/{{cookiecutter.analysis_name}}
+export best=$workdir/{{cookiecutter.best_trees_directory}}
 export phylip={{cookiecutter.phylip_path}}
 
-cd $workdir
-time parse-examl -m DNA -s $workdir/$phylip -n $phylip
+mkdir -p $best
+cd $best
+time parse-examl -m DNA -s $best/$phylip -n $phylip

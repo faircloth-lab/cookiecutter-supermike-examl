@@ -8,14 +8,15 @@
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir=$PWD/{{cookiecutter.analysis_name}}
-export parsimony=$workdir/{{cookiecutter.best_trees_directory}}/{{cookiecutter.best_trees_parsimony_directory}}
-export binary_phylip=$workdir/{{cookiecutter.phylip_path}}.binary
+export best=$workdir/{{cookiecutter.best_trees_directory}}
+export parsimony=$best/{{cookiecutter.best_trees_parsimony_directory}}
+export binary_phylip=$best/{{cookiecutter.phylip_path}}.binary
 export num_trees=20
 procs=$(({{cookiecutter.analysis_nodes}}*{{cookiecutter.analysis_ppn}}))
 
-
-cd $workdir
+mkdir -p $best
+cd $best
 for i in {0..$num_trees};
 do
-    mpirun -np $procs examl-AVX -s $binary_phylip -t $parsimony/RAxML_parsimonyTree.best.RUN.$i -m GAMMA -n T$i;
+    time mpirun -np $procs examl-AVX -s $binary_phylip -t $parsimony/RAxML_parsimonyTree.best.RUN.$i -m GAMMA -n T$i;
 done
