@@ -13,14 +13,14 @@ export parsimony=$best/{{cookiecutter.best_trees_parsimony_directory}}
 export binary_phylip=$best/{{cookiecutter.phylip_file}}.binary
 
 # compute some values on the fly
-num_trees=$(({{cookiecutter.number_of_trees}} - 1))
+num_trees_iter=$(({{cookiecutter.number_of_trees}} - 1))
 procs=$(({{cookiecutter.analysis_nodes}} * {{cookiecutter.analysis_ppn}}))
 
 cd $best
 # processing starts
 date
 # run command
-for i in {0..$num_trees};
+for i in {0..$num_trees_iter};
 do
     mpirun -np $procs examl-AVX -s $binary_phylip -t $parsimony/RAxML_parsimonyTree.best.RUN.$i -m GAMMA -n T$i;
 done
