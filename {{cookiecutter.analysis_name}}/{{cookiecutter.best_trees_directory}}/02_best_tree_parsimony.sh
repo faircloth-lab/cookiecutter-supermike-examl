@@ -15,4 +15,11 @@ export num_trees={{cookiecutter.number_of_trees}}
 
 mkdir -p $parsimony
 cd $parsimony
-time parsimonator-AVX -s $phylip -p $RANDOM -n best.RUN -N $num_trees
+# processing starts
+date
+# run command
+parsimonator-AVX -s $phylip -p $RANDOM -n best.RUN -N $num_trees
+# processing ends
+date
+# done
+exit 0

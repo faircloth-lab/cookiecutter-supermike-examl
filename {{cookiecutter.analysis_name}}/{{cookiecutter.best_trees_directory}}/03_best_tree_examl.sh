@@ -15,7 +15,14 @@ export num_trees=20
 procs=$(({{cookiecutter.analysis_nodes}}*{{cookiecutter.analysis_ppn}}))
 
 cd $best
+# processing starts
+date
+# run command
 for i in {0..$num_trees};
 do
-    time mpirun -np $procs examl-AVX -s $binary_phylip -t $parsimony/RAxML_parsimonyTree.best.RUN.$i -m GAMMA -n T$i;
+    mpirun -np $procs examl-AVX -s $binary_phylip -t $parsimony/RAxML_parsimonyTree.best.RUN.$i -m GAMMA -n T$i;
 done
+# processing ends
+date
+# done
+exit 0

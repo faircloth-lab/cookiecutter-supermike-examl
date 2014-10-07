@@ -8,7 +8,16 @@
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
+export best=$workdir/{{cookiecutter.best_trees_directory}}
 export phylip=$workdir/{{cookiecutter.phylip_file}}
 
-cd $workdir
-time parse-examl -m DNA -s $phylip -n {{cookiecutter.phylip_file}}
+# keep the binary alignment file with the best tree
+cd $best
+# processing starts
+date
+# run command
+parse-examl -m DNA -s $phylip -n {{cookiecutter.phylip_file}}
+# processing ends
+date
+# done
+exit 0
