@@ -20,8 +20,11 @@ mkdir -p $bootrep_reps
 cd $bootrep_reps
 # processing starts
 date
+# there seems to be a bug in raxml w/ full paths and bootstrapping
+# use symlink to get around it
+ln -s $workdir/{{cookiecutter.phylip_file}}
 # generate $reps bootreps from phylip file
-raxmlHPC-AVX -N $reps -b $RANDOM -f j -m GTRGAMMA -s $phylip -n REPS
+raxmlHPC-AVX -N $reps -b $RANDOM -f j -m GTRGAMMA -s {{cookiecutter.phylip_file}} -n REPS
 # convert those bootreps to binary format
 for i in {0..$rep_iterator};
 do
