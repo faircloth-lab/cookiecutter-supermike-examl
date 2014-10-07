@@ -2,20 +2,31 @@
 #PBS -q single
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=5:00:00
-#PBS -o bootrep_parsimonator_stdout
-#PBS -e bootrep_parsimonator_stderr
-#PBS -N bootrep_parsimonator
+#PBS -o 05_bootrep_parsimonator.stdout
+#PBS -e 05_bootrep_parsimonator.stderr
+#PBS -N 05_bootrep_parsimonator
 #PBS -A {{cookiecutter.allocation_name}}
 
-export bootrep_reps={{cookiecutter.working_directory}}/{{cookiecutter.bootrep_trees_directory}}/{{cookiecutter.bootrep_trees_reps_directory}}
-export bootrep_parsimony={{cookiecutter.working_directory}}/{{cookiecutter.bootrep_trees_directory}}/{{cookiecutter.bootrep_trees_parsimony_directory}}
-export reps={{cookiecutter.number_of_bootreps}}
-export phylip={{cookiecutter.phylip_path}}
+export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
+export bootrep=$workdir/{{cookiecutter.bootrep_trees_directory}}
+export bootrep_reps=$bootrep/{{cookiecutter.bootrep_trees_reps_directory}}
+export bootrep_parsimony=$bootrep/{{cookiecutter.bootrep_trees_parsimony_directory}}
+export phylip={{cookiecutter.phylip_file}}
+
+# compute some values on the fly
+reps=$(({{cookiecutter.number_of_bootreps}} - 1))
 
 mkdir -p $bootrep_parsimony
 cd $bootrep_parsimony
-for i in {1..$reps};
+# processing starts
+date
+# iterate over bootreps to create parsimony starting trees
+for i in {0..$reps};
 do
-    time parsimonator-AVX -s $bootrep_reps/$phylip.BS$i -p $RANDOM -n BS$i -N 1;
+    parsimonator-AVX -s $bootrep_reps/$phylip.BS$i -p $RANDOM -n BS$i -N 1;
     mv RAxML_parsimonyTree.BS$i.0 RAxML_parsimonyTree.BS$i
 done
+# processing ends
+date
+# done
+exit 0
