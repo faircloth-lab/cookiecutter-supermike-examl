@@ -7,14 +7,13 @@
 #PBS -N best_examl
 #PBS -A {{cookiecutter.allocation_name}}
 
-export workdir=$PWD/{{cookiecutter.analysis_name}}
+export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
 export best=$workdir/{{cookiecutter.best_trees_directory}}
 export parsimony=$best/{{cookiecutter.best_trees_parsimony_directory}}
-export binary_phylip=$best/{{cookiecutter.phylip_path}}.binary
+export binary_phylip={{cookiecutter.tld}}/{{cookiecutter.analysis_name}}/{{cookiecutter.phylip_path}}.binary
 export num_trees=20
 procs=$(({{cookiecutter.analysis_nodes}}*{{cookiecutter.analysis_ppn}}))
 
-mkdir -p $best
 cd $best
 for i in {0..$num_trees};
 do

@@ -1,4 +1,5 @@
 {
+    "top_level_directory":"$HOME",
     "analysis_name":"test",
     "allocation_name":"hpc_test02",
     "best_trees_directory":"best",

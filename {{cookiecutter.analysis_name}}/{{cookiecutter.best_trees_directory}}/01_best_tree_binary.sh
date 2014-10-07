@@ -7,10 +7,9 @@
 #PBS -N best_binary
 #PBS -A {{cookiecutter.allocation_name}}
 
-export workdir=$PWD/{{cookiecutter.analysis_name}}
+export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
 export best=$workdir/{{cookiecutter.best_trees_directory}}
-export phylip={{cookiecutter.phylip_path}}
+export phylip=$workdir/{{cookiecutter.phylip_path}}
 
-mkdir -p $best
 cd $best
-time parse-examl -m DNA -s $best/$phylip -n $phylip
+time parse-examl -m DNA -s $phylip -n $phylip
