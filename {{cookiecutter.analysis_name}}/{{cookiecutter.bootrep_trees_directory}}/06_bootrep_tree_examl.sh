@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q checkpt
 #PBS -l nodes={{cookiecutter.analysis_nodes}}:ppn={{cookiecutter.analysis_ppn}}
-#PBS -l walltime=72:00:00
+#PBS -l walltime={{cookiecutter.analysis_time}}:00:00
 #PBS -o 06_bootrep_examl.stdout
 #PBS -e 06_bootrep_examl.stderr
 #PBS -N 06_bootrep_examl
@@ -21,7 +21,7 @@ cd $bootrep
 date
 for i in {0..$reps};
 do
-    mpirun -np $procs examl-AVX -s $bootrep_reps/$phylip.BS$i.binary -t $bootrep_parsimony/RAxML_parsimonyTree.BS$i -m GAMMA -n T$i;
+    mpirun -np $procs -machinefile $PBS_NODEFILE examl-AVX -s $bootrep_reps/$phylip.BS$i.binary -t $bootrep_parsimony/RAxML_parsimonyTree.BS$i -m GAMMA -n T$i;
 done
 # processing ends
 date
