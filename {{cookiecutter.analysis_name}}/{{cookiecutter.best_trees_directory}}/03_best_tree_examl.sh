@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q workq
 #PBS -l nodes={{cookiecutter.analysis_nodes}}:ppn={{cookiecutter.analysis_ppn}}
-#PBS -l walltime=72:00:00
+#PBS -l walltime={{cookiecutter.analysis_time}}:00:00
 #PBS -o 03_best_examl.stdout
 #PBS -e 03_best_examl.stderr
 #PBS -N 03_best_examl
@@ -22,7 +22,7 @@ date
 # run command
 for i in {0..$num_trees_iter};
 do
-    mpirun -np $procs examl-AVX -s $binary_phylip -t $parsimony/RAxML_parsimonyTree.best.RUN.$i -m GAMMA -n T$i;
+    mpirun -np $procs -machinefile $PBS_NODEFILE examl-AVX -s $binary_phylip -t $parsimony/RAxML_parsimonyTree.best.RUN.$i -m GAMMA -n T$i;
 done
 # processing ends
 date
