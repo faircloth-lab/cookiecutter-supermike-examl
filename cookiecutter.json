@@ -12,5 +12,5 @@
     "analysis_nodes":"4",
     "analysis_ppn":"16",
     "number_of_bootreps":"100",
-    "cookiecutter.analysis_time":"72"
+    "analysis_time":"72"
 }
