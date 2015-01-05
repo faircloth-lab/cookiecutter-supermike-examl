@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -q workq
+#PBS -q checkpt
 #PBS -l nodes={{cookiecutter.analysis_nodes}}:ppn={{cookiecutter.analysis_ppn}}
 #PBS -l walltime={{cookiecutter.analysis_time}}:00:00
 #PBS -o 03_best_examl.stdout
