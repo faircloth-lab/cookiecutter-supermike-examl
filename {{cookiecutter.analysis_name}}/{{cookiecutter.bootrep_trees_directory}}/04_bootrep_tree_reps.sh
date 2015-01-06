@@ -26,7 +26,7 @@ ln -s $workdir/{{cookiecutter.phylip_file}}
 # generate $reps bootreps from phylip file
 raxmlHPC-AVX -N $reps -b $RANDOM -f j -m GTRGAMMA -s {{cookiecutter.phylip_file}} -n REPS
 # convert those bootreps to binary format
-for i in {0..$rep_iterator};
+for i in  $(seq 0 $rep_iterator);
 do
     parse-examl -m DNA -s {{cookiecutter.phylip_file}}.BS$i -n BS$i;
 done
