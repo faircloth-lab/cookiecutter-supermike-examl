@@ -21,7 +21,7 @@ cd $bootrep_parsimony
 # processing starts
 date
 # iterate over bootreps to create parsimony starting trees
-for i in {0..$reps};
+for i in  $(seq 0 $reps);
 do
     parsimonator-AVX -s $bootrep_reps/$phylip.BS$i -p $RANDOM -n BS$i -N 1;
     mv RAxML_parsimonyTree.BS$i.0 RAxML_parsimonyTree.BS$i
