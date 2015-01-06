@@ -19,7 +19,7 @@ procs=$(({{cookiecutter.analysis_nodes}}*{{cookiecutter.analysis_ppn}}))
 cd $bootrep
 # processing starts
 date
-for i in {0..$reps};
+for i in $(seq 0 $reps);
 do
     mpirun -np $procs -machinefile $PBS_NODEFILE examl-AVX -s $bootrep_reps/$phylip.BS$i.binary -t $bootrep_parsimony/RAxML_parsimonyTree.BS$i -m GAMMA -n T$i;
 done
