@@ -14,7 +14,7 @@ export bootrep_parsimony=$bootrep/{{cookiecutter.bootrep_trees_parsimony_directo
 
 # compute some values on the fly
 rep_iterator=$(({{cookiecutter.number_of_bootreps}} - 1))
-procs=$(({{cookiecutter.analysis_nodes}}*{{cookiecutter.analysis_ppn}}))
+procs=$(({{cookiecutter.analysis_nodes}} * {{cookiecutter.analysis_ppn}}))
 
 cd $bootrep
 # processing starts
