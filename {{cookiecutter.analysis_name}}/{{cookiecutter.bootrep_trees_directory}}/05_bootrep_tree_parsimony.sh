@@ -14,14 +14,14 @@ export bootrep_parsimony=$bootrep/{{cookiecutter.bootrep_trees_parsimony_directo
 export phylip={{cookiecutter.phylip_file}}
 
 # compute some values on the fly
-reps=$(({{cookiecutter.number_of_bootreps}} - 1))
+rep_iterator=$(({{cookiecutter.number_of_bootreps}} - 1))
 
 mkdir -p $bootrep_parsimony
 cd $bootrep_parsimony
 # processing starts
 date
 # iterate over bootreps to create parsimony starting trees
-for i in  $(seq 0 $reps);
+for i in  $(seq 0 $rep_iterator);
 do
     parsimonator-AVX -s $bootrep_reps/$phylip.BS$i -p $RANDOM -n BS$i -N 1;
     mv RAxML_parsimonyTree.BS$i.0 RAxML_parsimonyTree.BS$i
