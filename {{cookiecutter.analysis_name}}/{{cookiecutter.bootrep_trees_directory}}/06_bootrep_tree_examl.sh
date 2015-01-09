@@ -13,15 +13,15 @@ export bootrep_reps=$bootrep/{{cookiecutter.bootrep_trees_reps_directory}}
 export bootrep_parsimony=$bootrep/{{cookiecutter.bootrep_trees_parsimony_directory}}
 
 # compute some values on the fly
-reps=$(({{cookiecutter.number_of_bootreps}} - 1))
+rep_iterator=$(({{cookiecutter.number_of_bootreps}} - 1))
 procs=$(({{cookiecutter.analysis_nodes}}*{{cookiecutter.analysis_ppn}}))
 
 cd $bootrep
 # processing starts
 date
-for i in $(seq 0 $reps);
+for i in $(seq 0 $rep_iterator);
 do
-    mpirun -np $procs -machinefile $PBS_NODEFILE examl-AVX -s $bootrep_reps/$phylip.BS$i.binary -t $bootrep_parsimony/RAxML_parsimonyTree.BS$i -m GAMMA -n T$i;
+    mpirun -np $procs -machinefile $PBS_NODEFILE examl-AVX -s $bootrep_reps/BS$i.binary -t $bootrep_parsimony/RAxML_parsimonyTree.BS$i -m GAMMA -n T$i;
 done
 # processing ends
 date
