@@ -29,8 +29,6 @@ raxmlHPC-AVX -N $reps -b $RANDOM -f j -m GTRGAMMA -s {{cookiecutter.phylip_file}
 for i in  $(seq 0 $rep_iterator);
 do
     parse-examl -m DNA -s {{cookiecutter.phylip_file}}.BS$i -n BS$i;
-    # remove non-binary bootstrap replicates
-    rm {{cookiecutter.phylip_file}}.BS$i
 done
 # processing ends
 date
