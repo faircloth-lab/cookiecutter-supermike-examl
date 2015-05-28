@@ -22,6 +22,7 @@ date
 for i in $(seq 0 $rep_iterator);
 do
     mpirun -np $procs -machinefile $PBS_NODEFILE examl-AVX -s $bootrep_reps/BS$i.binary -t $bootrep_parsimony/RAxML_parsimonyTree.BS$i -m GAMMA -n T$i;
+    rm $bootrep_reps/BS$i.binary
 done
 # processing ends
 date
