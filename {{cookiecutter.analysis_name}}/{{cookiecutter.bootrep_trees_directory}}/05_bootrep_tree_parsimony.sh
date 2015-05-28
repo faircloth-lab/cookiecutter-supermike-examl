@@ -25,6 +25,7 @@ for i in  $(seq 0 $rep_iterator);
 do
     parsimonator-AVX -s $bootrep_reps/{{cookiecutter.phylip_file}}.BS$i -p $RANDOM -n BS$i -N 1;
     mv RAxML_parsimonyTree.BS$i.0 RAxML_parsimonyTree.BS$i
+    rm $bootrep_reps/{{cookiecutter.phylip_file}}.BS$i
 done
 # processing ends
 date
