@@ -8,4 +8,10 @@ To use, you need to [install cookiecutter](http://cookiecutter.readthedocs.org/e
 cookiecutter https://github.com/faircloth-lab/cookiecutter-supermike-examl
 ```
 
-Which will ask you several questions (current directory, working directory, nodes, CPUs per node, etc.) and build the scripts you need.  Then, within each of the *best* and *bootrep* directories, submit the created scripts, in order, to run ExaML.
+Which will ask you several questions (current directory, working directory, nodes, CPUs per node, etc.) and build the scripts you need.  Then, within each of the `best` and `bootreps` directories created, submit the scripts, in order (they are numbered), to run the needed components of ExaML.
+
+## Requires
+
+* [raxml 8.x.x](http://sco.h-its.org/exelixis/web/software/raxml/index.html)
+* [parsimonator](http://sco.h-its.org/exelixis/web/software/parsimonator/index.html)
+* [examl](http://sco.h-its.org/exelixis/web/software/examl/index.html)
