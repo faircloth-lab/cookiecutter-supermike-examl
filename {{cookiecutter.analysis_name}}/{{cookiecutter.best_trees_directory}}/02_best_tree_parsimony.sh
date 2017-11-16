@@ -4,7 +4,7 @@
 #PBS -l walltime=4:00:00
 #PBS -o 02_best_parsimomy.stdout
 #PBS -e 02_best_parsimony.stderr
-#PBS -N 02_best_parsimony
+#PBS -N 02_{{cookiecutter.analysis_name}}
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}

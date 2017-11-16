@@ -4,7 +4,7 @@
 #PBS -l walltime=2:00:00
 #PBS -o 01_best_tree_binary.stdout
 #PBS -e 01_best_tree_binary.stderr
-#PBS -N 01_best_tree_binary
+#PBS -N 01_{{cookiecutter.analysis_name}}
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}

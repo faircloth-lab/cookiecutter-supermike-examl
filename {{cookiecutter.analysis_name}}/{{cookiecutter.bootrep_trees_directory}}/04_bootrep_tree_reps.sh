@@ -4,7 +4,7 @@
 #PBS -l walltime=5:00:00
 #PBS -o 04_bootrep_bstrap.stdout
 #PBS -e 04_bootrep_bstrap.stderr
-#PBS -N 04_bootrep_bstrap
+#PBS -N 04_{{cookiecutter.analysis_name}}
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}

@@ -4,7 +4,7 @@
 #PBS -l walltime={{cookiecutter.analysis_time}}:00:00
 #PBS -o 06_bootrep_examl.stdout
 #PBS -e 06_bootrep_examl.stderr
-#PBS -N 06_bootrep_examl
+#PBS -N 06_{{cookiecutter.analysis_name}}
 #PBS -A {{cookiecutter.allocation_name}}
 
 export workdir={{cookiecutter.top_level_directory}}/{{cookiecutter.analysis_name}}
