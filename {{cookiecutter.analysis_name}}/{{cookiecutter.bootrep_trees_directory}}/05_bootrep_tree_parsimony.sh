@@ -1,7 +1,7 @@
 #!/bin/bash
-#PBS -q single
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=16:00:00
+#PBS -q checkpt
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=12:00:00
 #PBS -o 05_bootrep_parsimonator.stdout
 #PBS -e 05_bootrep_parsimonator.stderr
 #PBS -N 05_{{cookiecutter.analysis_name}}
@@ -21,12 +21,9 @@ cd $bootrep_parsimony
 # processing starts
 date
 # iterate over bootreps to create parsimony starting trees
-for i in  $(seq 0 $rep_iterator);
-do
-    parsimonator-AVX -s $bootrep_reps/{{cookiecutter.phylip_file}}.BS$i -p $RANDOM -n BS$i -N 1;
-    mv RAxML_parsimonyTree.BS$i.0 RAxML_parsimonyTree.BS$i
-    rm $bootrep_reps/{{cookiecutter.phylip_file}}.BS$i
-done
+parallel 'parsimonator-AVX -s $bootrep_reps/{{cookiecutter.phylip_file}}.BS{} -p $RANDOM -n BS{} -N 1; mv RAxML_parsimonyTree.BS{}.0 RAxML_parsimonyTree.BS{}' ::: $(seq 0 $rep_iterator)
+# remove phylip files
+rm $bootrep_reps/{{cookiecutter.phylip_file}}.BS*
 # processing ends
 date
 # done

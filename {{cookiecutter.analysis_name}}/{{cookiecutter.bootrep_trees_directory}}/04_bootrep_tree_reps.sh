@@ -1,7 +1,7 @@
 #!/bin/bash
-#PBS -q single
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=16:00:00
+#PBS -q checkpt
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=12:00:00
 #PBS -o 04_bootrep_bstrap.stdout
 #PBS -e 04_bootrep_bstrap.stderr
 #PBS -N 04_{{cookiecutter.analysis_name}}
@@ -26,10 +26,7 @@ ln -s $workdir/{{cookiecutter.phylip_file}}
 # generate $reps bootreps from phylip file
 raxmlHPC-AVX -N $reps -b $RANDOM -f j -m GTRGAMMA -s {{cookiecutter.phylip_file}} -n REPS
 # convert those bootreps to binary format
-for i in  $(seq 0 $rep_iterator);
-do
-    parse-examl -m DNA -s {{cookiecutter.phylip_file}}.BS$i -n BS$i;
-done
+parallel 'parse-examl -m DNA -s {{cookiecutter.phylip_file}}.BS{} -n BS{}' ::: $(seq 0 $rep_iterator)
 # processing ends
 date
 # done
