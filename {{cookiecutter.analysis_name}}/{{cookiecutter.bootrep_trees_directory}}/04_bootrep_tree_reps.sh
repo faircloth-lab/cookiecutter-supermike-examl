@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q single
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=5:00:00
+#PBS -l walltime=16:00:00
 #PBS -o 04_bootrep_bstrap.stdout
 #PBS -e 04_bootrep_bstrap.stderr
 #PBS -N 04_{{cookiecutter.analysis_name}}
